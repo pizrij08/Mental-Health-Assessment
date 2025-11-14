@@ -12,6 +12,7 @@ import 'features/landing/presentation/mindwell_landing_page.dart';
 import 'design_system/tokens/color_tokens.dart';
 import 'core/providers/app_providers.dart';
 import 'features/assessment/domain/models/assessment_result_adapter.dart';
+import 'features/assessment/application/services/assessment_migration.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,6 +22,9 @@ void main() async {
 
   // 注册 TypeAdapter
   Hive.registerAdapter(AssessmentResultAdapter());
+
+  // 执行数据迁移（从 SharedPreferences 到 Hive）
+  await AssessmentMigration.migrateIfNeeded();
 
   runApp(const ProviderScope(child: MentalTrekApp()));
 }
