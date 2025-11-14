@@ -1,0 +1,12 @@
+{
+  "dart.flutterRunAdditionalArgs": [
+    "--web-port=8080",
+    "--web-hostname=127.0.0.1"
+  ],
+  "dart.flutterToolArgs": [
+    "--web-port=8080",
+    "--web-hostname=127.0.0.1"
+  ],
+  "cmake.sourceDirectory": "E:/flutter/mental_health_project/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/example/linux/flutter"
+}
+
