@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import 'features/appointments/presentation/appointment_main_page.dart';
 import 'features/behavior/presentation/behavior_tracker_page.dart';
@@ -10,9 +11,21 @@ import 'features/auth/presentation/role_selection_page.dart';
 import 'features/landing/presentation/mindwell_landing_page.dart';
 import 'design_system/tokens/color_tokens.dart';
 import 'core/providers/app_providers.dart';
+import 'features/assessment/application/services/assessment_storage.dart';
+import 'services/journal_store.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
+  // 初始化 Hive 数据库
+  try {
+    await Hive.initFlutter();
+    await AssessmentStorage.init();
+    await HiveJournalEntryStore.init();
+  } catch (e) {
+    debugPrint('初始化 Hive 失败: $e');
+  }
+  
   runApp(const ProviderScope(child: MentalTrekApp()));
 }
 
